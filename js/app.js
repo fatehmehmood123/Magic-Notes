@@ -1,4 +1,4 @@
-console.log("This is magic Notes+1");
+// console.log("This is magic Notes+1");
 
 showNotes();
 
@@ -17,12 +17,12 @@ addBtn.addEventListener("click", function (e) {
         title: addTitle.value,
         text : addTxt.value
     }
-    notesObj.push(myObj);
+    if(myObj.title!=="" || myObj.text!==""){notesObj.push(myObj);}
     localStorage.setItem("notes", JSON.stringify(notesObj));
+    if( addTxt.value !== "" || addTitle.value !== ""){showNotes();}
     addTxt.value = "";
     addTitle.value = "";
     
-    showNotes();
 });
 
 
@@ -43,10 +43,11 @@ function showNotes() {
         <h5 class="card-title"> ${element.title===""?"No Title":element.title}</h5>
         <p  class="card-text">${element.text.replaceAll("\n", "<br/>")} </p>
         <button id="${index} "onclick="deleteNote(this.id)" class="btn btn-primary">Delete Note</button>
+        <button id="${index} "onclick="editNote(this.id)" class="btn btn-primary">Edit Note</button>
         </div>
         </div>
         `;  
-        console.log(element.title);     
+        // console.log(element.title);     
     });
     let notesElm = document.getElementById('notes');
     if (notesObj.length != 0) {
@@ -66,6 +67,23 @@ function deleteNote(index){
         notesObj = JSON.parse(notes);
     }
     notesObj.splice(index,1);
+    localStorage.setItem("notes", JSON.stringify(notesObj));
+    showNotes();
+    console.log(index)
+}
+
+
+// Function to delete Notes
+function editNote(index){
+    let notes = localStorage.getItem("notes");
+    if (notes == null) {
+        notesObj = [];
+    }
+    else {
+        notesObj = JSON.parse(notes);
+    }
+    // console.log(notesObj[0]);
+    // console.log(index);
     localStorage.setItem("notes", JSON.stringify(notesObj));
     showNotes();
 }
@@ -91,3 +109,4 @@ Search.addEventListener("input",function(){
         };
     });
 });
+
