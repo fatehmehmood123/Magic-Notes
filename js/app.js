@@ -43,7 +43,7 @@ function showNotes() {
         <h5 class="card-title"> ${element.title===""?"No Title":element.title}</h5>
         <p  class="card-text">${element.text.replaceAll("\n", "<br/>")} </p>
         <button id="${index} "onclick="deleteNote(this.id)" class="btn btn-primary">Delete Note</button>
-        <button id="${index} "onclick="editNote(this.id)" class="btn btn-primary">Edit Note</button>
+        
         </div>
         </div>
         `;  
