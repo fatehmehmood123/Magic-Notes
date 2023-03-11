@@ -1,5 +1,5 @@
 // console.log("This is magic Notes+1");
-
+let addTitle = document.getElementById("addTitle").focus();
 showNotes();
 
 let addBtn = document.getElementById("addBtn");
